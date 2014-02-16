@@ -1,0 +1,24 @@
+{ "cfOrgUnit": {
+    "name": "CYFRONET",
+    "cfPAddr": {
+        "count": 10
+    },
+    "cfOrgUnit": {
+        "count": 2,
+        "names": ["DepartmentA", "DepartmentB"],
+        "classes": ["Financial", "Marketing"]
+    },
+    "cfPers": {
+        "count": 100,
+        "classes": ["Manager", "CEO", "Senior Accountant"]
+    },
+    "cfFacil": {
+        "count": 20,
+        "classes": ["Data center", "Head Quarters", "Warehouse"]
+    },
+    "cfEquip": {
+        "count": 200,
+        "classes": ["NAS", "Server"]
+    }
+}
+}
