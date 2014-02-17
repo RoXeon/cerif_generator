@@ -1,7 +1,6 @@
 (ns cerif-generator.core
   (:use     [clojure.tools.cli :only (cli)])
   (:use     [clojure.set :only (union)])
-  (:require [clojure.core.reducers :as r])
   (:require [clojure.string :as s])
   (:require [clojure.data.json :as json])
   (:require [clojure.data.generators :as rnd])
@@ -88,10 +87,9 @@
   (let [OrgUnitId (uuid)]
     [(element :cfOrgUnit {}
               (element :cfOrgUnitId {}                                  OrgUnitId)
-              (element :cfCurrCode  {}                                  (rand-nth curr_codes))
               (element :cfAcro      {}                                  (random-string 10))
               (element :cfHeadcount {}                                  (str (rand-int 50)))
-              (element :cfTurn      {}                                  (format "%3.2f" (* (rnd/float) (rand-int 100))))
+              (element :cfTurn      {:cfCurrCode (rand-nth curr_codes)} (format "%3.2f" (* (rnd/float) (rand-int 100))))
               (element :cfName      (cfMultilang. (rand-nth langs) "o") (get (get config "cfOrgUnit") "name" (random-string 10)))
               (element :cfKeyw      (cfMultilang. (rand-nth langs) "o") (random-string 10))
               (element :cfResAct    (cfMultilang. (rand-nth langs) "o") (random-string 10))) ;; @todo: unknown fileld format
@@ -102,10 +100,9 @@
   (let [DepId (uuid)]
     [[(element :cfOrgUnit {}
               (element :cfOrgUnitId {}                                  DepId)
-              (element :cfCurrCode  {}                                  (rand-nth curr_codes))
               (element :cfAcro      {}                                  (random-string 10))
               (element :cfHeadcount {}                                  (str (rand-int 50)))
-              (element :cfTurn      {}                                  (format "%3.2f" (* (rnd/float) (rand-int 100))))
+              (element :cfTurn      {:cfCurrCode (rand-nth curr_codes)} (format "%3.2f" (* (rnd/float) (rand-int 100))))
               (element :cfName      (cfMultilang. (rand-nth langs) "o") (first (shuffle (get config "names" [(random-string 10)]))))
               (element :cfKeyw      (cfMultilang. (rand-nth langs) "o") (random-string 10))
               (element :cfResAct    (cfMultilang. (rand-nth langs) "o") (random-string 10))
